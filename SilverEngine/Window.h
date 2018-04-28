@@ -2,7 +2,6 @@
 #define WINDOW_H
 
 #include <OpenGLInc.h>
-#include <Color.h>
 #include <Renderer.h>
 #include <ResourceManager.h>
 #include <SceneManager.h>
@@ -17,12 +16,6 @@ public:
 	bool isRunning();
 	std::string getTitle();
 	GLFWwindow* getGLFWwindow();
-	RGBAColor getBGColor() {
-		return _backgroundColor;
-	}
-	void setBGColor(RGBAColor color) {
-		_backgroundColor = color;
-	}
 
 	Scene* getCurrentScene();
 	SceneManager* getSceneManager();
@@ -30,7 +23,6 @@ public:
 private:
 	bool _running;
 	std::string _title;
-	RGBAColor _backgroundColor;
 
 	Renderer _renderer;
 	SceneManager* _sceneManager;

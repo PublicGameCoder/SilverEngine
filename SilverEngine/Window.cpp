@@ -5,7 +5,6 @@ void framebuffer_size_callback( GLFWwindow* window, int width, int height );
 Window::Window(std::string title, SE_ERROR* error) {
 	this->_title = title;
 	this->_running = true;
-	this->_backgroundColor = RGBAColor( 0.0f , 0.0f , 0.4f , 0.0f );
 
 	this->s_Width = SCREENWIDTH;
 	this->s_Height = SCREENHEIGHT;
@@ -56,9 +55,9 @@ Window::Window(std::string title, SE_ERROR* error) {
 	glfwSetInputMode( _window, GLFW_STICKY_KEYS, GL_TRUE );
 
 	// Enable depth test
-	glEnable( GL_DEPTH_TEST );
+	//glEnable( GL_DEPTH_TEST ); //(Enabled by camera)
 	// Accept fragment if it closer to the camera than the former one
-	glDepthFunc( GL_LESS );
+	//glDepthFunc( GL_LESS ); //(Enabled by camera)
 
 	// Cull triangles which normal is not towards the camera
 	//glEnable( GL_CULL_FACE );
@@ -87,17 +86,17 @@ Window::~Window() {
 float i = 0;
 void Window::update() {
 	glfwMakeContextCurrent( _window );
-	//this->getCurrentScene()->getCamera()->updateCamera( this );
+	this->getCurrentScene()->getCamera()->updateCamera();
 	this->_renderer.updateWindow( this );
 
 	//True only for window update purposes
 	if ( true ) {
 		i += 0.05f;
-		RGBAColor c = getBGColor();
+		RGBAColor c = getCurrentScene()->getBGColor();
 		c.r = cos( i );
 		c.g = sin( i );
 		c.b = tan( i );
-		setBGColor( c );
+		getCurrentScene()->setBGColor( c );
 	}
 }
 

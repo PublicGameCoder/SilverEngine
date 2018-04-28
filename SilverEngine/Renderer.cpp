@@ -20,7 +20,7 @@ void Renderer::updateWindow( Window* window ) {
 	Input::getManager()->update( this->_currentWindow->getGLFWwindow() );
 
 	//Draw background color
-	RGBAColor color = this->_currentWindow->getBGColor();
+	RGBAColor color = this->_currentWindow->getCurrentScene()->getBGColor();
 	glClearColor( color.r, color.g, color.b, 0.0f );
 
 	updateScene( this->_currentWindow->getCurrentScene() );

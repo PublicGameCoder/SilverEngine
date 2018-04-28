@@ -15,11 +15,11 @@ int main( void )
 
 	Window* win = engine.getMainWindow();
 	//Window* win = engine.getWindow( TITLE, error);
-	win->setBGColor( RGBAColor( 1.0f, 0.0f, 0.0f, 0.0f ) );
+	win->getCurrentScene()->setBGColor( RGBAColor( 1.0f, 0.0f, 0.0f, 0.0f ) );
 
 	Window* window1 = engine.getWindow( "Map", &error );
 	if ( error ) { Engine::printErr( error ); }
-	window1->setBGColor( RGBAColor( 0.0f, 1.0f, 0.0f, 0.0f ) );
+	window1->getCurrentScene()->setBGColor( RGBAColor( 0.0f, 1.0f, 0.0f, 0.0f ) );
 	
 	Scene* main_Scene = win->getCurrentScene();
 

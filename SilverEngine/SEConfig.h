@@ -5,6 +5,7 @@
 
 #define TITLE "SilverEngine"
 #define MAINSCENE "Scene1"
+#define MAINCAMERA "MAIN_CAMERA"
 
 #define FULLSCREEN false
 
