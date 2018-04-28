@@ -23,7 +23,5 @@ int main( void )
 	
 	Scene* main_Scene = win->getCurrentScene();
 
-	//get main camera from main_Scene->getMainCamera();
-
 	return engine.start();
 }

@@ -86,7 +86,7 @@ Window::~Window() {
 float i = 0;
 void Window::update() {
 	glfwMakeContextCurrent( _window );
-	this->getCurrentScene()->getCamera()->updateCamera();
+	this->getCurrentScene()->updateScene();
 	this->_renderer.updateWindow( this );
 
 	//True only for window update purposes

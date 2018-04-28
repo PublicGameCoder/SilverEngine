@@ -10,6 +10,8 @@ class Scene
 public:
 	Scene( std::string title );
 	virtual ~Scene();
+	void updateScene();
+
 	std::string getTitle();
 	Camera* getCamera();
 

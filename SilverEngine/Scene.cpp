@@ -10,6 +10,10 @@ Scene::~Scene() {
 	
 }
 
+void Scene::updateScene() {
+	this->getCamera()->updateCamera();
+}
+
 Camera* Scene::getCamera() {
 	return this->_mainCamera;
 }

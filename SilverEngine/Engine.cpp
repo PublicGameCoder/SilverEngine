@@ -34,14 +34,14 @@ int Engine::start() {
 		Time::calcDelta();
 		this->_mainWindow->update();
 
-		std::map<std::string, Window*>::iterator it = _windows.begin();
-		while (it != _windows.end() ){
-			it->second->update();
-			if ( !it->second->isRunning() ) {
-				glfwDestroyWindow( it->second->getGLFWwindow() );
-				it = _windows.erase( it );
+		std::map<std::string, Window*>::iterator windowIterator = _windows.begin();
+		while (windowIterator != _windows.end() ){
+			windowIterator->second->update();
+			if ( !windowIterator->second->isRunning() ) {
+				glfwDestroyWindow( windowIterator->second->getGLFWwindow() );
+				windowIterator = _windows.erase( windowIterator );
 			} else {
-				++it;
+				++windowIterator;
 			}
 		}
 	}

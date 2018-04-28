@@ -24,7 +24,10 @@ public:
 	void update();
 
 private:
+
 	std::string _selected;
+
+	friend class Engine;
 	static std::map<std::string, Scene*> _scenes;
 };
 
