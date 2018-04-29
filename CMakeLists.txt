@@ -16,6 +16,7 @@ include_directories(
 	${CMAKE_SOURCE_DIR}/ExtLibs
 	
 	${CMAKE_SOURCE_DIR}/SilverEngine
+	${CMAKE_SOURCE_DIR}/Workspace
 )
 
 link_directories(
@@ -81,11 +82,11 @@ file(
 SET_TARGET_PROPERTIES(SilverEngine PROPERTIES LINKER_LANGUAGE CXX)
 
 IF(MAKE_DEMO)
-	
-	file(GLOB Demo_SRC
-		Workspace/Demo/*.h
-		Workspace/Demo/*.cpp
-	)
+
+file(GLOB Demo_SRC
+    Workspace/Demo/*.h
+    Workspace/Demo/*.cpp
+)
 
 	add_executable(Demo
 		${Demo_SRC}
@@ -109,8 +110,6 @@ IF(MAKE_DEMO)
 	target_link_libraries(Demo
 		${ALL_GRAPHICS_LIBS}
 	)
-	
-	add_dependencies(Demo CustomDlls)
 	
 	SET_TARGET_PROPERTIES(Demo PROPERTIES LINKER_LANGUAGE CXX)
 	
