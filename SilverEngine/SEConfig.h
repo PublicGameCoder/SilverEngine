@@ -16,6 +16,17 @@
 
 #define VSYNC true
 
+#define DEFAULTFONT "fonts/arial.ttf"
+
+#define DEFAULTMESHSHADERVERTEX "shaders/mesh.vert"
+#define DEFAULTMESHSHADERFRAGMENT "shaders/mesh.frag"
+
+#define DEFAULTTEXTSHADERVERTEX "shaders/text.vert"
+#define DEFAULTTEXTSHADERFRAGMENT "shaders/text.frag"
+
+#define DEFAULTCUBEMAPSHADERVERTEX "shaders/cubemap.vert"
+#define DEFAULTCUBEMAPSHADERFRAGMENT "shaders/cubemap.frag"
+
 //State defines
 typedef int SE_ERROR;
 #define SE_SUCCESS 0
@@ -25,6 +36,8 @@ typedef int SE_ERROR;
 #define SE_FAILED_GLFWINITIALIZATION 4
 #define SE_FAILED_GLFWCOULDNTCREATEWINDOW 5
 #define SE_FAILED_GLEWINITIALIZATION 6
+#define SE_FAILED_MAINSCENECANTBEREMOVED 7
+#define SE_FAILED_NAMEALREADYEXISTSBUTGOTCHANGED 8
 //End State defines
 
 //Includes

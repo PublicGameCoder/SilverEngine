@@ -19,9 +19,10 @@ public:
 	}
 
 	static bool createScene( std::string title, SE_ERROR* error );
+	static std::vector<Entity*> removeScene( std::string title, bool deleteEntities, SE_ERROR* error );
 	static Scene* getScene( std::string title, SE_ERROR* error );
 
-	void update();
+	static void update();
 
 private:
 

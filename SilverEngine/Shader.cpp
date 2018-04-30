@@ -1,9 +1,3 @@
 #include <Shader.h>
 
-Shader::Shader() {
-
-}
-
-Shader::~Shader() {
-
-}
+GLuint Shader::activeID = 0;

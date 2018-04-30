@@ -1,6 +1,6 @@
 #include <Camera.h>
 
-Camera::Camera(std::string title) : Entity( title ) {
+Camera::Camera(std::string title, SE_ERROR* error ) : Entity( title, error) {
 	this->_position = Point3( 0, 0, 650 );
 	this->_rotation = Point3( 0, PI, 0 );
 

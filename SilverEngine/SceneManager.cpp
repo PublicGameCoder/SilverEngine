@@ -12,20 +12,39 @@ SceneManager::~SceneManager() {
 }
 
 bool SceneManager::createScene( std::string title, SE_ERROR* error ) {
-	if ( _scenes[title] != NULL ) {
+	if ( _scenes[title] != NULL && title != MAINSCENE) {
 		*error = SE_FAILED_NAMEDUPLICATE;
 		return false;
 	}
-	Scene* scene = new Scene( title );
+	Scene* scene = new Scene( title, error);
 	_scenes[title] = scene;
-	*error = SE_SUCCESS;
 	return true;
+}
+
+std::vector<Entity*> SceneManager::removeScene( std::string title, bool deleteEntities, SE_ERROR* error ) {
+	std::vector<Entity*> entities = std::vector<Entity*>();
+	if ( _scenes[title] != NULL && title != MAINSCENE ) {
+		std::map<std::string, Scene*>::iterator it = _scenes.find( title );
+		if ( it != _scenes.end() ) {
+			entities = it->second->getEntities();
+			it->second->_destructEntitiesOnDestroy = deleteEntities;
+			delete it->second;
+			_scenes.erase( it );
+		}
+	}
+	else if ( title == MAINSCENE ) {
+		*error = SE_FAILED_MAINSCENECANTBEREMOVED;
+	}
+	else if ( _scenes[title] == NULL ) {
+		*error = SE_FAILED_NAMEDOESNOTEXIST;
+	}
+
+	return entities;
 }
 
 Scene* SceneManager::getScene( std::string title, SE_ERROR* error ) {
 	std::map<std::string, Scene*>::iterator it = _scenes.find( title );
 	if ( it != _scenes.end() ) {
-		*error = SE_SUCCESS;
 		return it->second;
 	}
 	*error = SE_FAILED_NAMEDOESNOTEXIST;
@@ -53,5 +72,9 @@ void SceneManager::prev( Scene* current ) {
 }
 
 void SceneManager::update() {
-
+	std::map<std::string, Scene*>::iterator it = _scenes.begin();
+	while ( it != _scenes.end() ) {
+		it->second->_updated = false;
+		++it;
+	}
 }

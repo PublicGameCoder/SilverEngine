@@ -16,7 +16,6 @@ ResourceManager::ResourceManager() {
 } 
 
 ResourceManager::~ResourceManager() {
-	/*
 	for each (std::pair<const std::string, Shader*> set in _shaders) {
 		Shader* shader = set.second;
 		if ( shader != nullptr ) {
@@ -37,11 +36,9 @@ ResourceManager::~ResourceManager() {
 			delete texture;
 		}
 	}
-	*/
 	FT_Done_FreeType( _freetype );
 }
 
-/*
 Texture* ResourceManager::getTexture( std::string filePath ) {
 	std::cout << "Loading Texture: " << filePath.c_str() << std::endl;
 	if ( _textures[filePath] != nullptr) {
@@ -176,4 +173,3 @@ std::map<GLchar, Character> ResourceManager::loadFont( std::string fontPath ) {
 
 	return pair;
 }
-*/

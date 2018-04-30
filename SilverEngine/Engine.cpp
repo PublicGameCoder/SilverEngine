@@ -13,7 +13,6 @@ Engine::Engine( SE_ERROR* error ) {
 	}
 
 	this->_mainWindow = new Window( TITLE, error );
-	*error = SE_SUCCESS;
 	printf("Successfully initialized the engine.\n");
 }
 
@@ -32,8 +31,9 @@ int Engine::start() {
 
 	while ( this->runnable && this->_mainWindow->isRunning() ) {
 		Time::calcDelta();
-		this->_mainWindow->update();
 
+		SceneManager::update();
+		this->_mainWindow->update();
 		std::map<std::string, Window*>::iterator windowIterator = _windows.begin();
 		while (windowIterator != _windows.end() ){
 			windowIterator->second->update();
@@ -56,18 +56,15 @@ bool Engine::createWindow( std::string title, SE_ERROR* error) {
 	}
 	Window* window = new Window( title, error );
 	_windows[title] = window;
-	*error = SE_SUCCESS;
 	return true;
 }
 
 Window* Engine::getWindow( std::string title, SE_ERROR* error ) {
 	if ( this->_mainWindow->getTitle() == title.c_str() ) {
-		*error = SE_SUCCESS;
 		return (this->_mainWindow);
 	}
 	std::map<std::string, Window*>::iterator it = _windows.find( title );
 	if ( it != _windows.end() ) {
-		*error = SE_SUCCESS;
 		return it->second;
 	}
 	*error = SE_FAILED_NAMEDOESNOTEXIST;
@@ -79,26 +76,31 @@ void Engine::printErr( SE_ERROR error ) {
 	case SE_SUCCESS:
 		break;
 	case SE_FAILED_UNDEFINED:
-		printf( ":SE_ERROR:Undefined_error" );//UNDEFINED.
+		printf( ":SE_ERROR:Undefined_error\n" );//UNDEFINED.
 		break;
 	case SE_FAILED_NAMEDUPLICATE:
-		printf( ":SE_ERROR:Name_already_exists" );//NAMEDUPLICATE.
+		printf( ":SE_ERROR:Name_already_exists\n" );//NAMEDUPLICATE.
 		break;
 	case SE_FAILED_NAMEDOESNOTEXIST:
-		printf( ":SE_ERROR:Name_does_not_exist" );//UNDEFINED.
+		printf( ":SE_ERROR:Name_does_not_exist\n" );//UNDEFINED.
 		break;
 	case SE_FAILED_GLFWINITIALIZATION:
-		printf( ":SE_ERROR:GLFW_INIT_FAILED" );//GLFW Init failed.
+		printf( ":SE_ERROR:GLFW_INIT_FAILED\n" );//GLFW Init failed.
 		break;
 	case SE_FAILED_GLFWCOULDNTCREATEWINDOW:
-		printf( ":SE_ERROR:GLFW_WINDOW_CREATION_FAILED" );//GLFW couldn't create a window.
+		printf( ":SE_ERROR:GLFW_WINDOW_CREATION_FAILED\n" );//GLFW couldn't create a window.
 		break;
 	case SE_FAILED_GLEWINITIALIZATION:
-		printf( ":SE_ERROR:GLEW_INIT_FAILED" );//GLEW Init failed.
+		printf( ":SE_ERROR:GLEW_INIT_FAILED\n" );//GLEW Init failed.
+		break;
+	case SE_FAILED_MAINSCENECANTBEREMOVED:
+		printf( ":SE_ERROR:Main_Scene_can't_be_removed\n" );//GLEW Init failed.
+		break;
+	case SE_FAILED_NAMEALREADYEXISTSBUTGOTCHANGED:
+		printf( ":SE_ERROR:Name_already_exists_but_got_changed\n" );//GLEW Init failed.
 		break;
 	default:
-		printf( ":SE_ERROR:Undefined_error" );//UNDEFINED
+		printf( ":SE_ERROR:Undefined_error\n" );//UNDEFINED
 		break;
 	}
-	printf( "\n" );
 }

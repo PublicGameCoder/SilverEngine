@@ -9,6 +9,8 @@
 #include <OpenGLInc.h>
 
 #include <SEConfig.h>
+#include <Texture.h>
+#include <Shader.h>
 
 /// Holds all state information relevant to a character as loaded using FreeType
 struct Character {
@@ -23,9 +25,9 @@ class ResourceManager
 public:
 	~ResourceManager();
 	static ResourceManager* getManager();
-	//Texture* getTexture( std::string filePath );
-	//Texture* getCubeMap( std::vector<std::string> faces );
-	//Shader* getShader( std::string vertexPath, std::string fragmentPath );
+	Texture* getTexture( std::string filePath );
+	Texture* getCubeMap( std::vector<std::string> faces );
+	Shader* getShader( std::string vertexPath, std::string fragmentPath );
 	std::map<GLchar, Character> getFontChars(std::string fontPath);
 private:
 	FT_Library _freetype;
@@ -34,9 +36,9 @@ private:
 
 	ResourceManager();
 
-	//std::map<std::string, Texture*> _textures;
-	//std::map<std::string, Texture*> _cubemaps;
-	//std::map<std::string, Shader*> _shaders;
+	std::map<std::string, Texture*> _textures;
+	std::map<std::string, Texture*> _cubemaps;
+	std::map<std::string, Shader*> _shaders;
 
 	std::map<std::string, std::map<GLchar, Character>> _fontChars;
 

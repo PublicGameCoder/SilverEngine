@@ -29,6 +29,8 @@ void Renderer::updateWindow( Window* window ) {
 	glfwSwapBuffers( this->_currentWindow->getGLFWwindow() );
 }
 
+//Update the active scene ones per frame.
 void Renderer::updateScene( Scene* scene ) {
-	
+	if ( scene->_updated )return;
+	scene->_updated = true;
 }

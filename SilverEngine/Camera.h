@@ -7,7 +7,7 @@
 class Camera : public Entity
 {
 public:
-	Camera( std::string title );
+	Camera( std::string title, SE_ERROR* error );
 	virtual ~Camera();
 	void updateCamera();
 
