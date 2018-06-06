@@ -29,14 +29,25 @@ public:
 		return _nrChannels;
 	}
 
+	std::string getType() {
+		return this->_type;
+	}
+
+	std::string getPath() {
+		return this->_path;
+	}
+
 	void load2DTexture( const std::string &filePath );
-	void loadSkybox( std::vector<std::string> &faces );
 
 private:
+	friend class Model;
+
 	GLuint _textureID;
 	int _nrChannels;
 	int _width;
 	int _height;
+	std::string _type;
+	std::string _path;
 };
 
 #endif // !TEXTURE_H

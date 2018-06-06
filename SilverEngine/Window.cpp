@@ -88,7 +88,6 @@ void Window::update() {
 	glfwMakeContextCurrent( _window );
 	this->getCurrentScene()->updateScene();
 	this->_renderer.updateWindow( this );
-
 	//True only for window update purposes
 	if ( true ) {
 		i += 0.05f;

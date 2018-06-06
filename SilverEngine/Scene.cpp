@@ -23,6 +23,9 @@ Scene::~Scene() {
 
 void Scene::updateScene() {
 	this->getCamera()->updateCamera();
+	for (Entity* child : this->getEntities()) {
+		child->update();
+	}
 }
 
 void Scene::addEntity( Entity* entity) {

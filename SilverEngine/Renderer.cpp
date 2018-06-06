@@ -3,7 +3,7 @@
 #include <Scene.h>
 
 Renderer::Renderer() {
-
+	this->_currentWindow = nullptr;
 }
 
 Renderer::~Renderer() {
@@ -17,7 +17,7 @@ void Renderer::updateWindow( Window* window ) {
 	// Clear the screen
 	glClear( GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT );
 
-	Input::getManager()->update( this->_currentWindow->getGLFWwindow() );
+	Input::getManager()->update( this->_currentWindow);
 
 	//Draw background color
 	RGBAColor color = this->_currentWindow->getCurrentScene()->getBGColor();

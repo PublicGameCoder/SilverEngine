@@ -26,7 +26,6 @@ public:
 	~ResourceManager();
 	static ResourceManager* getManager();
 	Texture* getTexture( std::string filePath );
-	Texture* getCubeMap( std::vector<std::string> faces );
 	Shader* getShader( std::string vertexPath, std::string fragmentPath );
 	std::map<GLchar, Character> getFontChars(std::string fontPath);
 private:
@@ -37,7 +36,6 @@ private:
 	ResourceManager();
 
 	std::map<std::string, Texture*> _textures;
-	std::map<std::string, Texture*> _cubemaps;
 	std::map<std::string, Shader*> _shaders;
 
 	std::map<std::string, std::map<GLchar, Character>> _fontChars;

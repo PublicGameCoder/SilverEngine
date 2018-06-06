@@ -13,6 +13,7 @@ include_directories(
 	${CMAKE_SOURCE_DIR}/ExtLibs/glm-0.9.8.4
 	${CMAKE_SOURCE_DIR}/ExtLibs/glew-1.9.0/include/
 	${CMAKE_SOURCE_DIR}/ExtLibs/freetype2/include/
+	${CMAKE_SOURCE_DIR}/ExtLibs/assimp-4.0.1/include/
 	${CMAKE_SOURCE_DIR}/ExtLibs
 	
 	${CMAKE_SOURCE_DIR}/SilverEngine
@@ -104,6 +105,11 @@ file(GLOB Demo_SRC
 	
 	file(
 		COPY Workspace/Demo/shaders
+		DESTINATION ${CMAKE_BINARY_DIR}
+	)
+	
+	file(
+		COPY Workspace/Demo/models
 		DESTINATION ${CMAKE_BINARY_DIR}
 	)
 	

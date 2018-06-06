@@ -1,6 +1,6 @@
 #include <MeshCollider.h>
 
-MeshCollider::MeshCollider() {
+MeshCollider::MeshCollider() : Collider() {
 
 }
 

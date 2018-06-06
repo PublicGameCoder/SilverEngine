@@ -4,16 +4,18 @@
 #include <OpenGLInc.h>
 #include <SEConfig.h>
 
+class Window;
+
 enum KeyCode;
 class Input {
 public:
 	static Input* getManager(void);
 
-	void update(GLFWwindow* window);
+	void update(Window* window);
 
 	virtual ~Input();
 
-	void setMouse(double xPos, double yPos) { glfwSetCursorPos(currentWindow, xPos, yPos); };
+	void setMouse( double xPos, double yPos );
 
 	int getWindowWidth() { return windowWidth; }
 	int getWindowHeight() { return windowHeight; }
@@ -45,7 +47,7 @@ public:
 	void resetScrollVertical(GLFWwindow* window) { continuedVerticalScrolls.find(window)->second = 0; }
 	void resetScrollHorizontal(GLFWwindow* window) { continuedHorizontalScrolls.find(window)->second = 0; }
 
-	GLFWwindow* getWindow() {
+	Window* getWindow() {
 		return currentWindow;
 	}
 
@@ -54,7 +56,7 @@ public:
 private:
 	static Input* instance;
 
-	GLFWwindow* currentWindow;
+	Window* currentWindow;
 	bool PressedKeys[GLFW_KEY_LAST];
 	bool KeysUp[GLFW_KEY_LAST];
 	bool KeysDown[GLFW_KEY_LAST];

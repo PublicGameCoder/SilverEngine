@@ -1,9 +1,9 @@
 #ifndef MESHCOLLIDER_H
 #define MESHCOLLIDER_H
 
-#include <Mesh.h>
+#include <Collider.h>
 
-class MeshCollider : public Mesh
+class MeshCollider : public Collider
 {
 public:
 	MeshCollider();

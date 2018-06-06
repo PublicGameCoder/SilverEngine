@@ -1,6 +1,8 @@
 #include <Engine.h>
 
+Engine* Engine::instance = nullptr;
 Engine::Engine( SE_ERROR* error ) {
+	instance = this;
 	this->runnable = true;
 
 	// Initialise GLFW
@@ -103,4 +105,8 @@ void Engine::printErr( SE_ERROR error ) {
 		printf( ":SE_ERROR:Undefined_error\n" );//UNDEFINED
 		break;
 	}
+}
+
+Engine* Engine::getInstance() {
+	return instance;
 }

@@ -18,8 +18,8 @@
 
 #define DEFAULTFONT "fonts/arial.ttf"
 
-#define DEFAULTMESHSHADERVERTEX "shaders/mesh.vert"
-#define DEFAULTMESHSHADERFRAGMENT "shaders/mesh.frag"
+#define DEFAULTMESHSHADERVERTEX "shaders/MeshShader.vert"
+#define DEFAULTMESHSHADERFRAGMENT "shaders/MeshShader.frag"
 
 #define DEFAULTTEXTSHADERVERTEX "shaders/text.vert"
 #define DEFAULTTEXTSHADERFRAGMENT "shaders/text.frag"

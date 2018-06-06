@@ -1,4 +1,5 @@
 #include <Input.h>
+#include <Window.h>
 
 Input* Input::instance = NULL;
 
@@ -50,25 +51,25 @@ void Input::preprocessWindow(GLFWwindow* window) {
 	}
 }
 
-void Input::update(GLFWwindow* w) {
+void Input::update(Window* w) {
 	currentWindow = w;
 
-	preprocessWindow(w);
+	preprocessWindow(w->getGLFWwindow());
 
 	glfwPollEvents();
 
-	glfwGetWindowSize(this->currentWindow, &windowWidth, &windowHeight);
+	glfwGetWindowSize(this->currentWindow->getGLFWwindow(), &windowWidth, &windowHeight);
 
 	/*
 	if (prevWindowWidth != windowWidth || prevWindowHeight != windowHeight) {
-		EventHandler::getManager()->call(WindowResizeEvent(currentWindow, windowWidth, windowHeight));
+		EventHandler::getManager()->call(WindowResizeEvent(currentWindow->getGLFWwindow(), windowWidth, windowHeight));
 		prevWindowWidth = windowWidth;
 		prevWindowHeight = windowHeight;
 	}*/
 
-	glfwSetWindowIconifyCallback( this->currentWindow, window_iconify_callback );
+	glfwSetWindowIconifyCallback( this->currentWindow->getGLFWwindow(), window_iconify_callback );
 
-	glfwGetCursorPos(this->currentWindow, &mouseX, &mouseY);
+	glfwGetCursorPos(this->currentWindow->getGLFWwindow(), &mouseX, &mouseY);
 
 	mouseX = ((float) SCREENWIDTH / windowWidth) * mouseX;
 	mouseY = ((float) SCREENHEIGHT / windowHeight) * mouseY;
@@ -86,7 +87,7 @@ void Input::update(GLFWwindow* w) {
 }
 
 void Input::processKey(unsigned int key) {
-	if (glfwGetKey(this->currentWindow, key) == GLFW_PRESS) {
+	if (glfwGetKey(this->currentWindow->getGLFWwindow(), key) == GLFW_PRESS) {
 		if (!PressedKeys[key]) {
 			PressedKeys[key] = true;
 			KeysDown[key] = true;
@@ -96,7 +97,7 @@ void Input::processKey(unsigned int key) {
 			KeysDown[key] = false;
 		}
 	}
-	if (glfwGetKey(this->currentWindow, key) == GLFW_RELEASE) {
+	if (glfwGetKey(this->currentWindow->getGLFWwindow(), key) == GLFW_RELEASE) {
 		if (PressedKeys[key]) {
 			PressedKeys[key] = false;
 			KeysUp[key] = true;
@@ -109,7 +110,7 @@ void Input::processKey(unsigned int key) {
 }
 
 void Input::processButton(unsigned int button) {
-	if (glfwGetMouseButton(this->currentWindow, button) == GLFW_PRESS) {
+	if (glfwGetMouseButton(this->currentWindow->getGLFWwindow(), button) == GLFW_PRESS) {
 		if (mouse[button] == false) {
 			mouse[button] = true;
 			mouseDown[button] = true;
@@ -119,7 +120,7 @@ void Input::processButton(unsigned int button) {
 			mouseDown[button] = false;
 		}
 	}
-	if (glfwGetMouseButton(this->currentWindow, button) == GLFW_RELEASE) {
+	if (glfwGetMouseButton(this->currentWindow->getGLFWwindow(), button) == GLFW_RELEASE) {
 		if (mouse[button] == true) {
 			mouse[button] = false;
 			mouseUp[button] = true;
@@ -160,6 +161,10 @@ void Input::scrollCallback(GLFWwindow* window, double xoffset, double yoffset) {
 		continuedVerticalScrolls.find(window)->second += (yoffset > 0) ? 1 : -1;
 	}
 }
+
+void Input::setMouse( double xPos, double yPos ) {
+	glfwSetCursorPos( currentWindow->getGLFWwindow(), xPos, yPos );
+};
 
 void window_iconify_callback( GLFWwindow* window, int iconified )
 {

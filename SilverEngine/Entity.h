@@ -4,6 +4,7 @@
 #include <SEConfig.h>
 #include <VectorX.h>
 #include <Sprite.h>
+#include <Input.h>
 
 class Entity
 {
@@ -26,6 +27,8 @@ public:
 	void setRotation( Vector3 rotation );
 	//Sets the scale in local space.
 	void setScale( Vector3 scale );
+	//Sets the model of the entity.
+	void setModel( Model* model );
 
 	//Gets the child of the entity by name.
 	Entity* getChild( std::string title );
@@ -41,6 +44,10 @@ public:
 	Vector3 getRotation();
 	//Gets the scale in local space.
 	Vector3 getScale();
+	//Gets the model of the entity.
+	Model* getModel();
+	//The update function of the entity class
+	virtual void update();
 private:
 	//Makes the scene permitted to use private variables/functions of this entity.
 	friend class Scene;
@@ -48,8 +55,6 @@ private:
 	Scene* _scene;
 	//Sets the scene of the entity existence.
 	void setScene( Scene* scene );
-	//Gets the scene of the entity existence.
-	Scene* getScene();
 
 	//Name of entity in the hierarchy
 	std::string _title;
@@ -66,6 +71,8 @@ private:
 	//The pointer to the parent of this entity.
 	Entity* _parent;
 protected:
+	//Gets the scene of the entity existence.
+	Scene* getScene();
 	//The position of this entity in local space.
 	Vector3 _position;
 	//The rotation of this entity in local space.
@@ -74,6 +81,8 @@ protected:
 	Vector3 _scale;
 	//Sprite of the entity
 	Sprite* _sprite;
+	//Model of the entity
+	Model* _model;
 };
 
 #endif // !ENTITY_H

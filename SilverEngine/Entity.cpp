@@ -15,6 +15,12 @@ Entity::~Entity() {
 	}
 }
 
+void Entity::update() {
+	for ( Entity* child : _childs ) {
+		child->update();
+	}
+}
+
 //Add a specified entity to become child of the entity.
 void Entity::addChild( Entity* child, SE_ERROR* error ) {
 	this->_childs.push_back( child );
@@ -87,6 +93,11 @@ void Entity::setScale( Vector3 scale ) {
 	this->_scale = scale;
 }
 
+//Sets the model of the entity.
+void Entity::setModel( Model* model ) {
+	this->_model = model;
+}
+
 //Gets the child of the entity by name.
 Entity* Entity::getChild( std::string title ) {
 	for ( Entity* entity : _childs ) {
@@ -133,4 +144,9 @@ Vector3 Entity::getRotation() {
 //Gets the scale in local space.
 Vector3 Entity::getScale() {
 	return this->_scale;
+}
+
+//Gets the model of the entity.
+Model* Entity::getModel() {
+	return this->_model;
 }

@@ -8,7 +8,7 @@ int main( void )
 	Engine::printErr( error );
 
 	engine.createWindow( "Map", &error );
-
+	Engine::printErr( error );
 	Window* win = engine.getMainWindow();
 	win->getCurrentScene()->setBGColor( RGBAColor( 1.0f, 0.0f, 0.0f, 0.0f ) );
 
@@ -24,6 +24,17 @@ int main( void )
 	en->addChild( smiley1, &error );
 
 	main_Scene->addEntity( en );
+
+	window1->getSceneManager()->createScene( "Scene2", &error );
+
+	Scene* scene2 = window1->getSceneManager()->getScene( "Scene2", &error);
+
+	Entity* en2 = new Entity( "Wall", &error );
+
+	Smiley* smiley2 = new Smiley( "Smiley", &error );
+	en2->addChild( smiley2, &error );
+
+	scene2->addEntity( en2 );
 
 	return engine.start();
 }
